@@ -1,15 +1,18 @@
 import email, smtplib, ssl
-
+import time
+import datetime
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-subject = "Daily Temperature and Humidity Data"
+now = datetime.datetime.now()
+timelog = now.hour + (now.minute / 60)
+subject = "Daily Temperature and Humidity Data up to: " + repr("%.2f" % round(timelog,2))
 body = "Temperature and Humidity CSV"
 sender_email = "send@gmail.com"
 receiver_email = "recieve@gmail.com"
-password = "sendpassword"
+password = "sendpass"
 
 def sendemail():
     # Create a multipart message and set headers
