@@ -6,6 +6,7 @@ import datetime
 import smtplib
 import ssl
 import email
+import Email.py
 
 from email import encoders
 from email.mime.base import MIMEBase
@@ -46,10 +47,9 @@ def logtemphumid(sc):
     #Write data
     csvwriter(humidity, temperature)
     #Create and Send Email
-    if itr == 48 #48 Iterations Being 24 Hours
-    
-        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-            server.login(email, password)
+    if itr >= 47 #47 Iterations Being 24 Hours with zero being the first
+        sendemail()
+        itr = 0
     itr+=1
     s.enter(1800, 1, logtemphumid, (sc,))
 
