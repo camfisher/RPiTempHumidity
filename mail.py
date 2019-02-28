@@ -6,13 +6,16 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+Config = ConfigParser.ConfigParser()
+Config.read("config.cfg")
+
 now = datetime.datetime.now()
 timelog = now.hour + (now.minute / 60)
 subject = "Daily Temperature and Humidity Data up to: " + repr("%.2f" % round(timelog,2))
 body = "Temperature and Humidity CSV"
-sender_email = "send@gmail.com"
-receiver_email = "recieve@gmail.com"
-password = "sendpass"
+sender_email = Config.get('EMAIL', 'Sender_Email')
+receiver_email = Config.get('EMAIL', 'Receiver_Email')
+password = Config.get('EMAIL', 'Password')
 
 def sendemail():
     # Create a multipart message and set headers
