@@ -1,31 +1,17 @@
 import sys
 import Adafruit_DHT
-import csv
 import sched
 import time
-import datetime
-import smtplib
 import mail
-
-from mail import sendemail
+import sendmail() from mail
+import csvwrite
+import csvwriter() from csvwrite
+import csvrewriter() from csvwrite
 #Pin Setup
 sensor = Adafruit_DHT.DHT11
 pin = 4
-#Setup csv Editor with h as Humidity Input and t as Temperature Input Then Compute Time in Hours
-def csvwriter(h, t):
-    with open('TemperatureHumidity.csv', mode='a') as TemperatureHumidity:
-        TemperatureHumidity_Writer = csv.writer(TemperatureHumidity, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        now = datetime.datetime.now()
-        timeh = now.hour + (now.minute / 60)
-        TemperatureHumidity_Writer.writerow(["%.2f" % round(timeh,2), "%.2f" % round(h,2), "%.2f" % round(t,2)])
 
-#csv Rewriter to reset the csv file at the end of the day
-def csvrewriter():
-    with open('TemperatureHumidity.csv', mode='w') as TemperatureHumidity:
-        TemperatureHumidity_Writer = csv.writer(TemperatureHumidity, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        TemperatureHumidity_Writer.writerow(["Time", "Humidity%", "Temperature"])
-        
-#clean csv file before loging starts
+#clean csv file before logging starts
 csvrewriter()
 #Setup Scheduler to Run Logger Every 1800 Seconds or Thirty Minutes
 itr = 0
@@ -48,7 +34,7 @@ def logtemphumid(sc):
         sendemail()
         csvrewriter()
         itr = 0
-        
+
     itr+=1
     s.enter(2, 1, logtemphumid, (sc,))
 
