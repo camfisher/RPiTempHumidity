@@ -3,10 +3,10 @@ import Adafruit_DHT
 import sched
 import time
 import mail
-from mail import sendmail()
+from mail import sendmail
 import csvwrite
-from csvwrite import csvwriter()
-from csvwrite import csvrewriter()
+from csvwrite import csvwriter
+from csvwrite import csvrewriter
 import ConfigParser
 
 #Get data from config file
