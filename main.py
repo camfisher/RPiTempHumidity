@@ -12,7 +12,15 @@ import configparser
 #Get data from config file
 Config = configparser.ConfigParser()
 Config.read("config.cfg")
-sensor = "Adafruit_DHT." + Config.get('MAIN', 'Sensor')
+cfgsensor = Config.get('MAIN', 'Sensor')
+sensor = Adafruit_DHT.DHT11
+if (cfgsensor == "DHT11"):
+    sensor = Adafruit_DHT.DHT11
+else if (cfgsensor == "DHT22"):
+    sensor = Adafruit_DHT.DHT22
+else:
+    print ("Sensor Unknown")
+
 pin = Config.getint('MAIN', 'GPIOpin')
 logtime = Config.getint('MAIN', 'Time')
 logiterations = Config.getint('MAIN', 'Iterations')
