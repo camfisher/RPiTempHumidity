@@ -5,8 +5,9 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import configparser
 
-Config = ConfigParser.ConfigParser()
+Config = configparser.ConfigParser()
 Config.read("config.cfg")
 
 now = datetime.datetime.now()
@@ -17,7 +18,7 @@ sender_email = Config.get('EMAIL', 'Sender_Email')
 receiver_email = Config.get('EMAIL', 'Receiver_Email')
 password = Config.get('EMAIL', 'Password')
 
-def sendemail():
+def sendmail():
     # Create a multipart message and set headers
     message = MIMEMultipart()
     message["From"] = sender_email

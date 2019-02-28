@@ -7,12 +7,12 @@ from mail import sendmail
 import csvwrite
 from csvwrite import csvwriter
 from csvwrite import csvrewriter
-import ConfigParser
+import configparser
 
 #Get data from config file
-Config = ConfigParser.ConfigParser()
+Config = configparser.ConfigParser()
 Config.read("config.cfg")
-sensor = Adafruit_DHT. + Config.get('MAIN', 'Sensor')
+sensor = "Adafruit_DHT." + Config.get('MAIN', 'Sensor')
 pin = Config.getint('MAIN', 'GPIOpin')
 logtime = Config.getint('MAIN', 'Time')
 logiterations = Config.getint('MAIN', 'Iterations')
