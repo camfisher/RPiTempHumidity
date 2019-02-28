@@ -47,7 +47,7 @@ def logtemphumid(sc):
     csvwriter(humidity, temperature)
     #Create and Send Email
     if (itr >= logiterations):
-        sendemail()
+        sendmail()
         csvrewriter()
         itr = 0
 
