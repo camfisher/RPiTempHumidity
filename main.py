@@ -16,7 +16,7 @@ cfgsensor = Config.get('MAIN', 'Sensor')
 sensor = Adafruit_DHT.DHT11
 if (cfgsensor == "DHT11"):
     sensor = Adafruit_DHT.DHT11
-else if (cfgsensor == "DHT22"):
+elif (cfgsensor == "DHT22"):
     sensor = Adafruit_DHT.DHT22
 else:
     print ("Sensor Unknown")
