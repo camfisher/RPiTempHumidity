@@ -3,4 +3,13 @@ Logs temperature and humidity via a DHT11 Sensor then eMails collected data afte
 
 Requires Python 3.7.x
 
-set send and recieve email in email.py
+See config.cfg for Settings
+
+User Controlable Settings:
+Sensor
+GPIOpin
+Time
+Iterations
+Sender_Email
+Receiver_Email
+Password
